@@ -9,6 +9,8 @@ export function RecipeLoginUp() {
     const navigate = useNavigate();
 
     const {handleLogin}=useContext(UserContext);
+
+    const {handleEmail}=useContext(UserContext);
     // const[username, setUsername] =useState("");
     
    
@@ -24,6 +26,7 @@ export function RecipeLoginUp() {
                 console.log(response.data);
                 if (response.data !== "success") {
                     handleLogin(response.data);
+                    handleEmail(values.userEmail);
                     navigate('/recipes')
 
                 } else {

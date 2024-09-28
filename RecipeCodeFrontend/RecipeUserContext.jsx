@@ -9,10 +9,18 @@ export const UserContext = createContext();
 export function UserProvider({ children }) {
     const [user, setUser] = useState(null); // User state
 
+    const [userEmail,setUserEmail]=useState(null);
+
+
     // Handle user login
     const handleLogin = (username) => {
         setUser({ name: username });
     };
+
+    const handleEmail=(useremail)=>{
+        setUserEmail({email:useremail});
+    }
+
 
     // Handle user logout
     const handleLogout = () => {
@@ -20,7 +28,7 @@ export function UserProvider({ children }) {
     };
 
     return (
-        <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
+        <UserContext.Provider value={{ user, handleLogin, handleLogout ,userEmail,handleEmail}}>
             {children}
         </UserContext.Provider>
     );

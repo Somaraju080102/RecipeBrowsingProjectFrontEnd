@@ -9,6 +9,8 @@ import axios from "axios";
 export function RecipeSubmission() {
 
     const context=useContext(UserContext);
+
+    const {userEmail,hadleEmail} = context
   
     const { user, handleLogout } = context || { user: null, handleLogout: () => {} }; // Default values
     // User state to track if the user is logged in
@@ -33,8 +35,9 @@ export function RecipeSubmission() {
             recipeTime: '',
             recipeDifficulty: '',
             recipeIngredients: [''],
-            recipeInstructions: '',
-            recipeAuthor: ''
+            recipeInstrucions: '',
+            recipeAuthor: '',
+            recipeAuthorEmail:userEmail.email,
         },
         validationSchema: Yup.object({
             recipeTitle: Yup.string().required("Recipe Title is required"),
@@ -44,14 +47,17 @@ export function RecipeSubmission() {
             recipeIngredients: Yup.array()
                 .of(Yup.string().required("Ingredient cannot be empty"))
                 .min(1, "At least one ingredient is required"),
-            recipeInstructions: Yup.string().required("Recipe Instructions are required"),
+                recipeInstrucions: Yup.string().required("Recipe Instructions are required"),
             recipeAuthor: Yup.string().required("Recipe Author is required"),
         }),
         onSubmit: async (values) => {
 
             try{
+
                 const response=await axios.post('http://localhost:8080/recipes',values);
+                console.log(values);
                 console.log("Saving Recipe info"+response.data);
+            
             }
             catch(error){
                 console.error(error);
@@ -211,14 +217,14 @@ export function RecipeSubmission() {
                         <dd>
                             <textarea
                                 className="form-control"
-                                value={formik.values.recipeInstructions}
+                                value={formik.values.recipeInstrucions}
                                 onChange={formik.handleChange}
-                                name="recipeInstructions"
+                                name="recipeInstrucions"
                                 rows="5"
                                 placeholder="Enter Instructions"
                             />
                         </dd>
-                        <dd className="text-bg-danger">{formik.errors.recipeInstructions}</dd>
+                        <dd className="text-bg-danger">{formik.errors.recipeInstrucions}</dd>
 
                         {/* Recipe Author */}
                         <dt>Recipe Author:</dt>

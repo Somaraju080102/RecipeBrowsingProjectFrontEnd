@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useFormik } from "formik";
+import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
+import { UserContext } from "./RecipeUserContext";
 
 export function RecipeSignup() {
     const navigate = useNavigate();
-
+    const {handleEmail} =useContext(UserContext);
     const formik = useFormik({
         initialValues: {
             userName: '',
@@ -18,6 +20,7 @@ export function RecipeSignup() {
                 const response = await axios.post('http://localhost:8080/signup', values);
                 console.log("Response :" + response.data);
                 if (response.data === "User SignUp Successfull") {
+                    handleEmail(values.userEmail);
                     const aresponse=await axios.post('http://localhost:8080/authors', values);
                     navigate('/login');
                 }
