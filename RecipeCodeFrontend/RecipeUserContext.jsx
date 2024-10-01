@@ -7,9 +7,12 @@ export const UserContext = createContext();
 
 // UserProvider component
 export function UserProvider({ children }) {
+
     const [user, setUser] = useState(null); // User state
 
     const [userEmail,setUserEmail]=useState(null);
+
+    const [recipeId,setRecipeId]=useState(null);
 
 
     // Handle user login
@@ -21,6 +24,9 @@ export function UserProvider({ children }) {
         setUserEmail({email:useremail});
     }
 
+    const handleRecipeId=(recipeid)=>{
+        setRecipeId({id:recipeid});
+    }
 
     // Handle user logout
     const handleLogout = () => {
@@ -28,7 +34,7 @@ export function UserProvider({ children }) {
     };
 
     return (
-        <UserContext.Provider value={{ user, handleLogin, handleLogout ,userEmail,handleEmail}}>
+        <UserContext.Provider value={{ user, handleLogin, handleLogout ,userEmail,handleEmail,recipeId,handleRecipeId}}>
             {children}
         </UserContext.Provider>
     );

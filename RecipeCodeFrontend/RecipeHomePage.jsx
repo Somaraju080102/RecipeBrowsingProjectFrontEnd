@@ -5,6 +5,7 @@ import { RecipeLoginUp } from "./RecipeLoginUp.jsx";
 import { RecipeSubmission } from "./RecipeSubmission.jsx";
 import { RecipeProfile } from "./RecipeProfile.jsx";
 import { UserProvider } from "./RecipeUserContext.jsx";
+import { RecipeMyRecipes } from "./RecipeMyRecipes.jsx";
 
 
 export function RecipHomePage() {
@@ -51,8 +52,11 @@ export function RecipHomePage() {
                 />
                 <Route path="login" element={<RecipeLoginUp />} />
                 <Route path="signup" element={<RecipeSignup />} />
-                <Route path="/recipes" element={<RecipeSubmission />}
-                />  
+                <Route path="/recipes" element={<RecipeSubmission/>}/>
+                <Route path="/myrecipes" element={<RecipeMyRecipes></RecipeMyRecipes>}/>
+            
+                
+                  
             </Routes>
             </UserProvider>
         </BrowserRouter>

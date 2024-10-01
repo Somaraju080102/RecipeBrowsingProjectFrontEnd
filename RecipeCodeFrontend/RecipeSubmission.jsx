@@ -3,16 +3,21 @@ import { useContext, useState } from "react";
 import * as Yup from "yup";
 import { RecipeProfile } from "./RecipeProfile";
 import { UserContext } from "./RecipeUserContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export function RecipeSubmission() {
 
+    const navigate=useNavigate();
+
     const context=useContext(UserContext);
 
-    const {userEmail,hadleEmail} = context
+    const {userEmail,hadleEmail} = context || { userEmail :null, hadleEmail:()=> {} };
   
     const { user, handleLogout } = context || { user: null, handleLogout: () => {} }; // Default values
+
+    const{handleRecipeId} =useContext(UserContext);
+
     // User state to track if the user is logged in
     // const [user, setUser] = useState(null);
 
@@ -37,7 +42,7 @@ export function RecipeSubmission() {
             recipeIngredients: [''],
             recipeInstrucions: '',
             recipeAuthor: '',
-            recipeAuthorEmail:userEmail.email,
+            recipeAuthorEmail:userEmail ? userEmail.email: null,
         },
         validationSchema: Yup.object({
             recipeTitle: Yup.string().required("Recipe Title is required"),
@@ -57,7 +62,8 @@ export function RecipeSubmission() {
                 const response=await axios.post('http://localhost:8080/recipes',values);
                 console.log(values);
                 console.log("Saving Recipe info"+response.data);
-            
+                handleRecipeId(response.data);
+                navigate(`/myrecipes`);
             }
             catch(error){
                 console.error(error);
@@ -99,9 +105,9 @@ export function RecipeSubmission() {
                 <button className="btn btn-primary">
                     <span className="bi bi-search"></span> Browse Recipe
                 </button>
-                <button className="btn btn-primary">
+               <Link to={"/myrecipes"}> <button className="btn btn-primary">
                     <span className="bi bi-journal"></span> My Recipes
-                </button>
+                </button></Link>
                 <button className="btn btn-primary">
                     <RecipeProfile /> {/* The profile dropdown, you can modify it based on user status */}
                 </button>

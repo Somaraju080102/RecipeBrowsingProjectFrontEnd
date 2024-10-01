@@ -24,7 +24,7 @@ export function RecipeSignup() {
                     const aresponse=await axios.post('http://localhost:8080/authors', values);
                     navigate('/login');
                 }
-                alert(JSON.stringify(values));
+                // alert(JSON.stringify(values));
             } catch (error) {
                 console.error(error);
                 alert("Error Signing up");
