@@ -6,11 +6,17 @@ import { UserContext } from "./RecipeUserContext";
 import { useContext, useState } from "react";
 
 export function RecipeLoginUp() {
+
+
     const navigate = useNavigate();
 
     const {handleLogin}=useContext(UserContext);
 
     const {handleEmail}=useContext(UserContext);
+
+    const {handleRecipeId}=useContext(UserContext);
+
+    
     // const[username, setUsername] =useState("");
     
    
@@ -23,10 +29,11 @@ export function RecipeLoginUp() {
         onSubmit: async (values) => {
             try {
                 const response = await axios.post('http://localhost:8080/login', values);
-                console.log(response.data);
-                if (response.data !== "success") {
-                    handleLogin(response.data);
+                console.log(response.data.at(0)+" "+response.data.at(1));
+                if (response.data.at(0) !== "success") {
+                    handleLogin(response.data.at(0));
                     handleEmail(values.userEmail);
+                    handleRecipeId(response.data.at(1));
                     navigate('/recipes')
 
                 } else {

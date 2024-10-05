@@ -24,10 +24,13 @@ export function RecipeSignup() {
                     const aresponse=await axios.post('http://localhost:8080/authors', values);
                     navigate('/login');
                 }
+                else{
+                    alert("User already Exists please login");
+                }
                 // alert(JSON.stringify(values));
             } catch (error) {
                 console.error(error);
-                alert("Error Signing up");
+                alert("User already Exists please login");
             }
         },
         validationSchema: Yup.object({
@@ -90,7 +93,7 @@ export function RecipeSignup() {
                             name="userEmail"
                             className="form-control"
                             onChange={formik.handleChange}
-                            value={formik.values.userEmail}
+                            value={formik.values.userEmail.toLowerCase()}
                             required
                         />
                         <small className="text-danger">{formik.errors.userEmail}</small>
