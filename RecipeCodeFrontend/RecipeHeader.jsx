@@ -11,12 +11,12 @@ export function RecipeHeader(){
              <Link to={"/recipes"}>   <button className="btn btn-primary">
                     <span className="bi bi-plus-circle"></span> Add Recipe
                 </button></Link>
-                <button className="btn btn-primary">
+              <Link to={"/browse"}>  <button className="btn btn-primary">
                     <span className="bi bi-search"></span> Browse Recipe
-                </button>
-                <button className="btn btn-primary">
+                </button></Link>
+             <Link to={"/myrecipes"}>   <button className="btn btn-primary">
                     <span className="bi bi-journal"></span> My Recipes
-                </button>
+                </button></Link>
                 <button className="btn btn-primary">
                     <RecipeProfile /> {/* The profile dropdown, you can modify it based on user status */}
                 </button>

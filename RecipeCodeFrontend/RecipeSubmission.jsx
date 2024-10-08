@@ -5,6 +5,7 @@ import { RecipeProfile } from "./RecipeProfile";
 import { UserContext } from "./RecipeUserContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { RecipeHeader } from "./RecipeHeader";
 
 export function RecipeSubmission() {
 
@@ -94,8 +95,7 @@ export function RecipeSubmission() {
 
     return (
         <div>
-            {/* Navigation Header */}
-            <header className="d-flex justify-content-around bg-black p-3">
+            {/* <header className="d-flex justify-content-around bg-black p-3">
                <Link to={"/"}> <button className="btn btn-primary">
                     <span className="bi bi-house"></span> Home
                 </button></Link>
@@ -110,9 +110,8 @@ export function RecipeSubmission() {
                 </button></Link>
                 <button className="btn btn-primary">
                     <RecipeProfile /> {/* The profile dropdown, you can modify it based on user status */}
-                </button>
-            </header>
-
+                
+                <RecipeHeader></RecipeHeader>
             {/* Recipe Submission Form */}
             <div>
                 <form onSubmit={formik.handleSubmit}>
