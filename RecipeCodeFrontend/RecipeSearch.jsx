@@ -16,21 +16,20 @@ export function RecipeSearch() {
 
   const fetchFilteredRecipes = async () => {
     try {
-        const response = await axios.get("http://localhost:8080/allRecipes", {
-            params: {
-                search: searchTerm,
-                types: selectedTypes, // Axios automatically encodes arrays
-                difficulty: selectedDifficulty,
-                time: selectedTime,
-            }
-        });
-        console.log(response.data);
-        setRecipes(response.data);
+      const response = await axios.get("http://localhost:8080/allRecipes", {
+        params: {
+          search: searchTerm,
+          types: selectedTypes, // Axios automatically encodes arrays
+          difficulty: selectedDifficulty,
+          time: selectedTime,
+        },
+      });
+      console.log(response.data);
+      setRecipes(response.data);
     } catch (error) {
-        console.error("Error fetching recipes:", error);
+      console.error("Error fetching recipes:", error);
     }
-};
-
+  };
 
   // Handle checkbox changes for types, difficulty, and time
   const handleCheckboxChange = (e, filterType, setSelectedFilter) => {

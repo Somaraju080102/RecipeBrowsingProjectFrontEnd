@@ -8,59 +8,58 @@ import { UserProvider } from "./RecipeUserContext.jsx";
 import { RecipeMyRecipes } from "./RecipeMyRecipes.jsx";
 import { RecipeSearch } from "./RecipeSearch.jsx";
 
-
 export function RecipHomePage() {
-    return (
-        <BrowserRouter>
-        <UserProvider>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <div
-                            style={{
-                                backgroundImage: `url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZvb2R8ZW58MHx8fHwxNjI3NjQ5ODQ5&ixlib=rb-1.2.1&q=80&w=1080')`,
-                                backgroundSize: "cover",
-                                height: "100vh",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                flexDirection: "column",
-                                color: "white",
-                            }}
-                        >
-                            <h1
-                                style={{
-                                    textAlign: "center",
-                                    fontSize: "4rem",
-                                    marginBottom: "20px",
-                                }}
-                            >
-                                RecipeBrowsing
-                            </h1>
-                            <div
-                                style={{
-                                    backgroundColor: "rgba(255, 255, 255, 0.8)",
-                                    padding: "20px",
-                                    borderRadius: "10px",
-                                    width: "400px",
-                                }}
-                            >
-                                <RecipeLogin />
-                            </div>
-                        </div>
-                    }
-                />
-                <Route path="login" element={<RecipeLoginUp />} />
-                <Route path="signup" element={<RecipeSignup />} />
-                <Route path="/recipes" element={<RecipeSubmission/>}/>
-                <Route path="/myrecipes" element={<RecipeMyRecipes></RecipeMyRecipes>}/>
-                <Route path="/browse" element={<RecipeSearch></RecipeSearch>}></Route>
-            
-                
-                  
-            </Routes>
-            </UserProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <UserProvider>
+        <Routes>
+          <Route
+            path="/log"
+            element={
+              <div
+                style={{
+                  backgroundImage: `url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZvb2R8ZW58MHx8fHwxNjI3NjQ5ODQ5&ixlib=rb-1.2.1&q=80&w=1080')`,
+                  backgroundSize: "cover",
+                  height: "100vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  color: "white",
+                }}
+              >
+                <h1
+                  style={{
+                    textAlign: "center",
+                    fontSize: "4rem",
+                    marginBottom: "20px",
+                  }}
+                >
+                  RecipeBrowsing
+                </h1>
+                <div
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.8)",
+                    padding: "20px",
+                    borderRadius: "10px",
+                    width: "400px",
+                  }}
+                >
+                  <RecipeLogin />
+                </div>
+              </div>
+            }
+          />
+          <Route path="login" element={<RecipeLoginUp />} />
+          <Route path="signup" element={<RecipeSignup />} />
+          <Route path="/recipes" element={<RecipeSubmission />} />
+          <Route
+            path="/myrecipes"
+            element={<RecipeMyRecipes></RecipeMyRecipes>}
+          />
+          <Route path="/" element={<RecipeSearch></RecipeSearch>}></Route>
+        </Routes>
+      </UserProvider>
+    </BrowserRouter>
+  );
 }
