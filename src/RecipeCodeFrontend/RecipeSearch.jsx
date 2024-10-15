@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { RecipeHeader } from "./RecipeHeader";
 import axios from "axios";
+import qs from "qs";
 
 export function RecipeSearch() {
   const [recipes, setRecipes] = useState([]);
@@ -16,19 +17,36 @@ export function RecipeSearch() {
 
   const fetchFilteredRecipes = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/allRecipes", {
-        params: {
-          search: searchTerm,
-          types: selectedTypes, // Axios automatically encodes arrays
-          difficulty: selectedDifficulty,
-          time: selectedTime,
-        },
-      });
+
+      const querystring= qs.stringify({
+        search: searchTerm,
+        types: selectedTypes, // Axios automatically encodes arrays
+        difficulty: selectedDifficulty,
+        time: selectedTime,
+      },{arrayFormat: 'repeat'});
+      console.log("search length"+" "+searchTerm.length)
+      console.log(querystring);
+      if (querystring!="search="){
+      const response = await axios.get(`http://localhost:8080/allRecipes?${querystring}`); 
+      // {
+      //   params: {
+      //     search: searchTerm,
+      //     types: selectedTypes, // Axios automatically encodes arrays
+      //     difficulty: selectedDifficulty,
+      //     time: selectedTime,
+      //   },
       console.log(response.data);
       setRecipes(response.data);
-    } catch (error) {
+      }
+   else{
+    const response = await axios.get("http://localhost:8080/allRecipes");
+    setRecipes(response.data);
+
+   } 
+  }catch (error) {
       console.error("Error fetching recipes:", error);
     }
+  
   };
 
   // Handle checkbox changes for types, difficulty, and time
@@ -79,7 +97,7 @@ export function RecipeSearch() {
             <li className="list-group-item">
               <input
                 type="checkbox"
-                value="Veg"
+                value="veg"
                 onChange={(e) =>
                   handleCheckboxChange(e, "types", setSelectedTypes)
                 }
@@ -89,7 +107,7 @@ export function RecipeSearch() {
             <li className="list-group-item">
               <input
                 type="checkbox"
-                value="Non-Veg"
+                value="non-veg"
                 onChange={(e) =>
                   handleCheckboxChange(e, "types", setSelectedTypes)
                 }
@@ -99,7 +117,7 @@ export function RecipeSearch() {
             <li className="list-group-item">
               <input
                 type="checkbox"
-                value="Both"
+                value="both"
                 onChange={(e) =>
                   handleCheckboxChange(e, "types", setSelectedTypes)
                 }
@@ -114,7 +132,7 @@ export function RecipeSearch() {
             <li className="list-group-item">
               <input
                 type="checkbox"
-                value="Easy"
+                value="easy"
                 onChange={(e) =>
                   handleCheckboxChange(e, "difficulty", setSelectedDifficulty)
                 }
@@ -124,7 +142,7 @@ export function RecipeSearch() {
             <li className="list-group-item">
               <input
                 type="checkbox"
-                value="Medium"
+                value="medium"
                 onChange={(e) =>
                   handleCheckboxChange(e, "difficulty", setSelectedDifficulty)
                 }
@@ -134,7 +152,7 @@ export function RecipeSearch() {
             <li className="list-group-item">
               <input
                 type="checkbox"
-                value="Hard"
+                value="hard"
                 onChange={(e) =>
                   handleCheckboxChange(e, "difficulty", setSelectedDifficulty)
                 }
