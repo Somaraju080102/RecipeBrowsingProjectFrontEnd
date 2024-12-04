@@ -8,7 +8,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 // import { EcommerceService } from './components/Ecommerce/Ecommerce';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import axios from 'axios';
-import { RecipeHomePage, RecipHomePage } from './RecipeCodeFrontend/RecipeHomePage';
+import { RecipHomePage } from './RecipeCodeFrontend/RecipeHomePage';
 // import { StyleBinding } from './components/style-binding/Sbinding';
 // import { ProductInfo } from './components/data-binding/databinding';
 // import { UseState } from './components/UseState/UseState';

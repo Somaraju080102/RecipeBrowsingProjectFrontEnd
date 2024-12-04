@@ -221,7 +221,7 @@ export function RecipeSearch() {
                   <td>{recipe.recipeTime} mins</td>
                   <td>{recipe.recipeDifficulty}</td>
                   <td>{recipe.recipeIngredients}</td>
-                  <td>{recipe.recipeInstructions}</td>
+                  <td>{recipe.recipeInstrucions}</td>
                   <td>{recipe.recipeAuthor}</td>
                 </tr>
               ))}
